@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>JBBL Compliance Checker</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- THEME BUTTON -->
+
+<button id="themeToggle"
+        class="theme-toggle">
+
+🌙
+
+</button>
+
+<!-- CONSTRUCTION CURSOR -->
+
+<div class="construction-cursor"></div>
+
+<!-- FLOATING ICONS -->
+
+<div class="floating-icons">
+
+<span>🏢</span>
+<span>🏗️</span>
+<span>🚧</span>
+<span>🏭</span>
+<span>🦺</span>
+
+</div>
+
+
+
+<div class="bg-blur blur1"></div>
+<div class="bg-blur blur2"></div>
+
+<div class="wrap">
+
+<!-- HEADER -->
+
+<div class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+
+        <img src="assets/logo.png"
+             alt="Logo">
+
+        </div>
+
+        <div>
+
+            <h1>
+                JBBL Compliance Checker
+            </h1>
+
+            <p>
+                JBBL 2016 + All Amendments till 2024
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FORM -->
+
+<div class="card">
+
+<div class="sec">
+
+<i class="ti ti-map-pin"></i>
+
+Project & Site
+
+</div>
+
+<div class="grid3">
+
+<div>
+
+<label>Zone / area type</label>
+
+<select id="i-zone">
+
+<option value="new">New area</option>
+
+<option value="old">Old area</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Authority</label>
+
+<select id="i-auth">
+
+<option value="rmc">
+RMC / DMC / RRDA / MADA
+</option>
+
+<option value="ulb">
+Other ULB
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Road width facing plot (m)</label>
+
+<input type="number"
+       id="i-road"
+       value="9">
+
+</div>
+
+</div>
+
+<div class="grid4">
+
+<div>
+
+<label>Plot area (sq.m)</label>
+
+<input type="number"
+       id="i-plot"
+       value="500">
+
+</div>
+
+<div>
+
+<label>Land extent (acres)</label>
+
+<input type="number"
+       id="i-land"
+       value="0.5">
+
+</div>
+
+<div>
+
+<label>Near airport fly zone?</label>
+
+<select id="i-fly">
+
+<option value="none">No</option>
+
+<option value="within30">
+Yes — above 30m
+</option>
+
+<option value="medium">
+Yes — below 30m
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Plot affected by road widening?</label>
+
+<select id="i-rw">
+
+<option value="no">No</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div id="rw-extra"
+     style="display:none">
+
+<div class="grid3">
+
+<div>
+
+<label>
+Area surrendered
+</label>
+
+<input type="number"
+       id="i-rwarea"
+       value="50">
+
+</div>
+
+<div>
+
+<label>
+Surrender method
+</label>
+
+<select id="i-rwmethod">
+
+<option value="deed">
+Deed
+</option>
+
+<option value="affidavit">
+Affidavit
+</option>
+
+<option value="undertaking">
+Undertaking
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+Building type
+</label>
+
+<select id="i-rwbtype">
+
+<option value="new">
+New project
+</option>
+
+<option value="individual">
+Individual
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BUILDING DETAILS -->
+
+<div class="card">
+
+<div class="sec">
+
+<i class="ti ti-home"></i>
+
+Building Details
+
+</div>
+
+<div class="grid3">
+
+<div>
+
+<label>Primary use</label>
+
+<select id="i-use">
+
+<option value="res">
+Residential
+</option>
+
+<option value="comm">
+Commercial
+</option>
+
+<option value="nonres">
+Office
+</option>
+
+<option value="ind">
+Industrial
+</option>
+
+<option value="inst">
+Institutional
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>No. of storeys</label>
+
+<input type="number"
+       id="i-storeys"
+       value="5">
+
+</div>
+
+<div>
+
+<label>Building height</label>
+
+<input type="number"
+       id="i-ht"
+       value="18">
+
+</div>
+
+</div>
+
+<div class="grid4">
+
+<div>
+
+<label>No. of units</label>
+
+<input type="number"
+       id="i-units"
+       value="32">
+
+</div>
+
+<div>
+
+<label>Built-up area</label>
+
+<input type="number"
+       id="i-bua"
+       value="4000">
+
+</div>
+
+<div>
+
+<label>Ground coverage</label>
+
+<input type="number"
+       id="i-gcov"
+       value="300">
+
+</div>
+
+<div>
+
+<label>Building age</label>
+
+<input type="number"
+       id="i-age"
+       value="0">
+
+</div>
+
+</div>
+
+<div class="grid3">
+
+<div>
+
+<label>Basement?</label>
+
+<select id="i-bsmt">
+
+<option value="no">
+No
+</option>
+
+<option value="yes">
+Yes
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Green rating</label>
+
+<select id="i-green">
+
+<option value="none">
+None
+</option>
+
+<option value="griha3">
+GRIHA 3★
+</option>
+
+<option value="griha4">
+GRIHA 4★
+</option>
+
+<option value="griha5">
+GRIHA 5★
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Applicant type</label>
+
+<select id="i-appl">
+
+<option value="private">
+Private
+</option>
+
+<option value="govt">
+Government
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<button class="btn-big"
+        onclick="runAll()">
+
+<i class="ti ti-report-analytics"></i>
+
+Generate Full Compliance Report
+
+</button>
+
+
+
+<!-- RESULTS -->
+
+<div class="results"
+     id="results">
+
+</div>
+
+<div id="pdf-btn-wrap"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
